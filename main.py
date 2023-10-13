@@ -29,8 +29,19 @@ def light_off():
     logging.info(f" Switching Off Light Number {light_number}")
 
 
+def log_message():
+    from datetime import datetime
+    status = b.get_light(int(light_number))["state"]["on"]
+    current_time = datetime.now().strftime("%H:%M:%S")
+    if status:
+        logging.info(f"Current time is {current_time}, Fish Light is On")
+    else:
+        logging.info(f"Current time is {current_time}, Fish Light is Off")
+
+
 schedule.every().day.at(on_time).do(light_on)
 schedule.every().day.at(off_time).do(light_off)
+schedule.every(30).minutes.do(log_message)
 
 while True:
     schedule.run_pending()
