@@ -10,12 +10,15 @@ logging.basicConfig(level=logging.INFO)
 on_time = os.getenv('ON_TIME')
 off_time = os.getenv('OFF_TIME')
 light_number = os.getenv('LIGHT_NUMBER')
+bridge_ip = os.getenv('BRIDGE_IP')
 
 logging.info(f" On Time is {on_time}")
 logging.info(f" Off Time is {off_time}")
 logging.info(f" Light number is {light_number}")
+logging.info(f" Bridge IP address is {bridge_ip}")
 
-b = Bridge('192.168.1.10')
+
+b = Bridge(bridge_ip)
 b.connect()
 
 
