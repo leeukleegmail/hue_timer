@@ -1,4 +1,3 @@
-import datetime
 import logging
 import os
 
@@ -16,13 +15,13 @@ light = os.getenv('LIGHT_SOCKET')
 co2 = os.getenv('CO2_SOCKET')
 bridge_ip = os.getenv('BRIDGE_IP')
 
-logging.info(f" Light On Time is {light_on_time}")
-logging.info(f" Light Off Time is {light_off_time}")
-logging.info(f" CO2 On Time is {co2_on_time}")
-logging.info(f" CO2 Off Time is {co2_off_time}")
-logging.info(f" Light socket is {light}")
-logging.info(f" CO2 socket is {co2}")
-logging.info(f" Bridge IP address is {bridge_ip}")
+logging.info(f" Light on time    : {light_on_time}")
+logging.info(f" Light off time   : {light_off_time}")
+logging.info(f" CO2 on time      : {co2_on_time}")
+logging.info(f" CO2 off time     : {co2_off_time}")
+logging.info(f" Light socket     : {light}")
+logging.info(f" CO2 socket       : {co2}")
+logging.info(f" Bridge IP        : {bridge_ip}")
 
 b = Bridge(bridge_ip)
 b.connect()
