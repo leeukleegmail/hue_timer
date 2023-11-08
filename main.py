@@ -43,7 +43,7 @@ def light_off():
 
 
 def co2_off():
-    b.set_light(light_id=int(light), parameter='on', value=False)
+    b.set_light(light_id=int(co2), parameter='on', value=False)
     logging.info(f" Switching Off CO2 {co2}")
 
 
@@ -52,7 +52,7 @@ def log_message():
     light_status = b.get_light(int(light))["state"]["on"]
     co2_status = b.get_light(int(co2))["state"]["on"]
 
-    current_time = datetime.now().strftime("%Y-%m-%d - %H:%M:%S")
+    current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     if light_status:
         logging.info(f"Current time is {current_time}, Light is On")
     else:
@@ -63,6 +63,7 @@ def log_message():
         logging.info(f"Current time is {current_time}, CO2 is Off")
 
 
+log_message()
 schedule.every().day.at(light_on_time).do(light_on)
 schedule.every().day.at(light_off_time).do(light_off)
 schedule.every().day.at(co2_on_time).do(co2_on)
