@@ -1,4 +1,4 @@
-CONTAINER_NAME="hue_timer"
+CONTAINER_NAME="hue_fish_timer"
 
 LIGHT_ON_TIME="11:00"
 LIGHT_OFF_TIME="20:00"
