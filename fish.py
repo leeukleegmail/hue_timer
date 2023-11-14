@@ -54,13 +54,13 @@ def log_message():
 
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     if light_status:
-        logging.info(f"Current time is {current_time}, Light is On")
+        logging.info(f" Current time is {current_time}, Light is On")
     else:
-        logging.info(f"Current time is {current_time}, Light is Off")
+        logging.info(f" Current time is {current_time}, Light is Off")
     if co2_status:
-        logging.info(f"Current time is {current_time}, CO2 is On")
+        logging.info(f" Current time is {current_time}, CO2 is On")
     else:
-        logging.info(f"Current time is {current_time}, CO2 is Off")
+        logging.info(f" Current time is {current_time}, CO2 is Off")
 
 
 log_message()
