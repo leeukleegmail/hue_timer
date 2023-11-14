@@ -11,8 +11,8 @@ logging.basicConfig(level=logging.INFO)
 bridge_ip = os.getenv('BRIDGE_IP')
 group = os.getenv('GROUP_NAME')
 
-logging.info(f" Bridge IP        : {bridge_ip}")
-logging.info(f" Group Name       : {group}")
+logging.info(f"Bridge IP        : {bridge_ip}")
+logging.info(f"Group Name       : {group}")
 
 b = Bridge(bridge_ip)
 b.connect()
@@ -21,7 +21,7 @@ b.connect()
 def sofa_off():
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_group(group, 'on', False)
-    logging.info(f" Current time is {current_time} Switching Off {group}")
+    logging.info(f"Current time is {current_time} Switching Off {group}")
 
 
 def log_message():
@@ -30,9 +30,9 @@ def log_message():
     group_status =b.get_group("Sofa")["state"]["any_on"]
 
     if group_status:
-        logging.info(f" Current time is {current_time}, Group {group} is On")
+        logging.info(f"Current time is {current_time}, Group {group} is On")
     else:
-        logging.info(f" Current time is {current_time}, Group {group} is Off")
+        logging.info(f"Current time is {current_time}, Group {group} is Off")
 
 
 log_message()

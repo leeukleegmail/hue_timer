@@ -15,13 +15,13 @@ light = os.getenv('LIGHT_SOCKET')
 co2 = os.getenv('CO2_SOCKET')
 bridge_ip = os.getenv('BRIDGE_IP')
 
-logging.info(f" Light on time    : {light_on_time}")
-logging.info(f" Light off time   : {light_off_time}")
-logging.info(f" CO2 on time      : {co2_on_time}")
-logging.info(f" CO2 off time     : {co2_off_time}")
-logging.info(f" Light socket     : {light}")
-logging.info(f" CO2 socket       : {co2}")
-logging.info(f" Bridge IP        : {bridge_ip}")
+logging.info(f"Light on time    : {light_on_time}")
+logging.info(f"Light off time   : {light_off_time}")
+logging.info(f"CO2 on time      : {co2_on_time}")
+logging.info(f"CO2 off time     : {co2_off_time}")
+logging.info(f"Light socket     : {light}")
+logging.info(f"CO2 socket       : {co2}")
+logging.info(f"Bridge IP        : {bridge_ip}")
 
 b = Bridge(bridge_ip)
 b.connect()
@@ -29,22 +29,22 @@ b.connect()
 
 def light_on():
     b.set_light(light_id=int(light), parameter='on', value=True)
-    logging.info(f" Switching On Light {light}")
+    logging.info(f"Switching On Light {light}")
 
 
 def co2_on():
     b.set_light(light_id=int(co2), parameter='on', value=True)
-    logging.info(f" Switching On CO2 {co2}")
+    logging.info(f"Switching On CO2 {co2}")
 
 
 def light_off():
     b.set_light(light_id=int(light), parameter='on', value=False)
-    logging.info(f" Switching Off Light {light}")
+    logging.info(f"Switching Off Light {light}")
 
 
 def co2_off():
     b.set_light(light_id=int(co2), parameter='on', value=False)
-    logging.info(f" Switching Off CO2 {co2}")
+    logging.info(f"Switching Off CO2 {co2}")
 
 
 def log_message():
@@ -54,13 +54,13 @@ def log_message():
 
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     if light_status:
-        logging.info(f" Current time is {current_time}, Light is On")
+        logging.info(f"Current time is {current_time}, Light is On")
     else:
-        logging.info(f" Current time is {current_time}, Light is Off")
+        logging.info(f"Current time is {current_time}, Light is Off")
     if co2_status:
-        logging.info(f" Current time is {current_time}, CO2 is On")
+        logging.info(f"Current time is {current_time}, CO2 is On")
     else:
-        logging.info(f" Current time is {current_time}, CO2 is Off")
+        logging.info(f"Current time is {current_time}, CO2 is Off")
 
 
 log_message()
