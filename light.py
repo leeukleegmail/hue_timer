@@ -20,8 +20,14 @@ b.connect()
 
 def sofa_off():
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
-    b.set_group(group, 'on', False)
-    logging.info(f"Current time is {current_time} Switching Off {group}")
+
+    group_status = b.get_group("Sofa")["state"]["any_on"]
+
+    if group_status:
+        b.set_group(group, 'on', False)
+        logging.info(f"Current time is {current_time} Switching Off {group}")
+    else:
+        logging.info(f"Current time is {current_time} {group} is already Off ")
 
 
 def log_message():
