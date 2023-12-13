@@ -7,18 +7,34 @@ import time
 
 logging.basicConfig(level=logging.INFO)
 
-light_on_time = os.getenv('LIGHT_ON_TIME')
-light_off_time = os.getenv('LIGHT_OFF_TIME')
-co2_on_time = os.getenv('CO2_ON_TIME')
-co2_off_time = os.getenv('CO2_OFF_TIME')
+
+def add_offset_to_time(time, offset):
+    hours = time.split(":")[0]
+    time_with_offset = int(hours) + int(offset)
+    return f"{time_with_offset}:00"
+
+
+on_time = os.getenv('ON_TIME')
+light_delay = os.getenv('LIGHT_DELAY')
+on_duration = os.getenv('ON_DURATION')
+off_time = add_offset_to_time(on_time, on_duration)
+light_on_time = add_offset_to_time(on_time, light_delay)
+light_off_time = add_offset_to_time(light_on_time, on_duration)
+
+pause_time = os.getenv('PAUSE_TIME')
+pause_duration = os.getenv('PAUSE_DURATION')
+unpause_time = add_offset_to_time(pause_time, pause_duration)
+
 light = os.getenv('LIGHT_SOCKET')
 co2 = os.getenv('CO2_SOCKET')
 bridge_ip = os.getenv('BRIDGE_IP')
 
+logging.info(f"CO2 on time      : {on_time}")
 logging.info(f"Light on time    : {light_on_time}")
+logging.info(f"Pause time       : {pause_time}")
+logging.info(f"Resume time      : {unpause_time}")
+logging.info(f"CO2 off time     : {off_time}")
 logging.info(f"Light off time   : {light_off_time}")
-logging.info(f"CO2 on time      : {co2_on_time}")
-logging.info(f"CO2 off time     : {co2_off_time}")
 logging.info(f"Light socket     : {light}")
 logging.info(f"CO2 socket       : {co2}")
 logging.info(f"Bridge IP        : {bridge_ip}")
@@ -66,8 +82,15 @@ def log_message():
 log_message()
 schedule.every().day.at(light_on_time).do(light_on)
 schedule.every().day.at(light_off_time).do(light_off)
-schedule.every().day.at(co2_on_time).do(co2_on)
-schedule.every().day.at(co2_off_time).do(co2_off)
+schedule.every().day.at(on_time).do(co2_on)
+schedule.every().day.at(off_time).do(co2_off)
+
+
+schedule.every().day.at(pause_time).do(light_off)
+schedule.every().day.at(unpause_time).do(light_on)
+schedule.every().day.at(pause_time).do(co2_off)
+schedule.every().day.at(unpause_time).do(co2_on)
+
 schedule.every(15).minutes.do(log_message)
 
 while True:
