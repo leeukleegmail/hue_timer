@@ -1,5 +1,6 @@
 import logging
 import os
+from datetime import datetime
 
 from phue import Bridge
 import schedule
@@ -29,6 +30,7 @@ light = os.getenv('LIGHT_SOCKET')
 co2 = os.getenv('CO2_SOCKET')
 bridge_ip = os.getenv('BRIDGE_IP')
 
+logging.info(f"On duration is   : {on_duration} hours")
 logging.info(f"CO2 on time      : {on_time}")
 logging.info(f"Light on time    : {light_on_time}")
 logging.info(f"Pause time       : {pause_time}")
@@ -44,23 +46,27 @@ b.connect()
 
 
 def light_on():
+    current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(light), parameter='on', value=True)
-    logging.info(f"Switching On Light {light}")
+    logging.info(f"Switching On Light {light}, {current_time}")
 
 
 def co2_on():
+    current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(co2), parameter='on', value=True)
-    logging.info(f"Switching On CO2 {co2}")
+    logging.info(f"Switching On CO2 {co2}, {current_time}")
 
 
 def light_off():
+    current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(light), parameter='on', value=False)
-    logging.info(f"Switching Off Light {light}")
+    logging.info(f"Switching Off Light {light}, {current_time}")
 
 
 def co2_off():
+    current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(co2), parameter='on', value=False)
-    logging.info(f"Switching Off CO2 {co2}")
+    logging.info(f"Switching Off CO2 {co2}, {current_time}")
 
 
 def log_message():
