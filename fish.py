@@ -77,7 +77,7 @@ def log_message():
     if light_status:
         logging.info(f"{current_time}, Light is On")
     else:
-        logging.info(f" {current_time}, Light is Off")
+        logging.info(f"{current_time}, Light is Off")
     if co2_status:
         logging.info(f"{current_time}, CO2 is On")
     else:
