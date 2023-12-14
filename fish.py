@@ -48,41 +48,40 @@ b.connect()
 def light_on():
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(light), parameter='on', value=True)
-    logging.info(f"Switching On Light {light}, {current_time}")
+    logging.info(f"{current_time}, Switching On Light {light}")
 
 
 def co2_on():
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(co2), parameter='on', value=True)
-    logging.info(f"Switching On CO2 {co2}, {current_time}")
+    logging.info(f"{current_time}, Switching On CO2 {co2}")
 
 
 def light_off():
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(light), parameter='on', value=False)
-    logging.info(f"Switching Off Light {light}, {current_time}")
+    logging.info(f"{current_time}, Switching Off Light {light}")
 
 
 def co2_off():
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(co2), parameter='on', value=False)
-    logging.info(f"Switching Off CO2 {co2}, {current_time}")
+    logging.info(f"{current_time} ,Switching Off CO2 {co2}")
 
 
 def log_message():
-    from datetime import datetime
     light_status = b.get_light(int(light))["state"]["on"]
     co2_status = b.get_light(int(co2))["state"]["on"]
 
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     if light_status:
-        logging.info(f"Current time is {current_time}, Light is On")
+        logging.info(f"{current_time}, Light is On")
     else:
-        logging.info(f"Current time is {current_time}, Light is Off")
+        logging.info(f" {current_time}, Light is Off")
     if co2_status:
-        logging.info(f"Current time is {current_time}, CO2 is On")
+        logging.info(f"{current_time}, CO2 is On")
     else:
-        logging.info(f"Current time is {current_time}, CO2 is Off")
+        logging.info(f"{current_time}, CO2 is Off")
 
 
 log_message()
