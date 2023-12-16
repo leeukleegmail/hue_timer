@@ -67,7 +67,7 @@ def light_off():
 def co2_off():
     current_time = datetime.now().strftime("%Y/%m/%d - %H:%M:%S")
     b.set_light(light_id=int(co2), parameter='on', value=False)
-    logging.info(f"{current_time} ,Switching Off CO2 {co2}")
+    logging.info(f"{current_time}, Switching Off CO2 {co2}")
 
 
 def log_message():
