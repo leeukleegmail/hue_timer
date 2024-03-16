@@ -19,11 +19,6 @@ on_time = os.getenv('ON_TIME')
 on_duration = os.getenv('ON_DURATION')
 off_time = add_offset_to_time(on_time, on_duration)
 
-
-pause_time = os.getenv('PAUSE_TIME')
-pause_duration = os.getenv('PAUSE_DURATION')
-unpause_time = add_offset_to_time(pause_time, pause_duration)
-
 co2 = os.getenv('CO2_SOCKET')
 bridge_ip = os.getenv('BRIDGE_IP')
 
