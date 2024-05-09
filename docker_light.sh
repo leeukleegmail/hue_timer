@@ -1,7 +1,7 @@
 CONTAINER_NAME="hue_light_timer"
 
 GROUP_NAME="Sofa"
-BRIDGE_IP="192.168.1.10"
+BRIDGE_IP="192.168.178.158"
 SCRIPT_NAME="light.py"
 
 docker stop $CONTAINER_NAME
