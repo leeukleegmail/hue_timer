@@ -1,4 +1,4 @@
-FROM python:alpine3.19
+FROM python:3-alpine
 
 ENV TZ="Europe/Amsterdam"
 
